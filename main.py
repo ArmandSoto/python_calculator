@@ -38,16 +38,34 @@ class Calculator(QWidget):
             for col, value in enumerate(row_values):
                 button = QPushButton(value)
                 button.setFixedSize(50,50)
-                #val=value caputre the current value at the time the lamda is defined
+                #val=value capture the current value at the time the lamda is defined
                 # o.w. you'd end up passing the last value in the loop to every button click
                 button.clicked.connect(lambda _, val=value: self.on_button_click(val))
                 grid.addWidget(button, row, col)
 
-                #continue here
+        #setup the layout
+        layout.addLayout(grid)
+        self.setLayout(layout)
+
+    def on_button_click(self, value):
+        if value == 'C':
+            self.display.clear()
+        elif value == '=':
+            # prevent something like Division by Zero
+            try:
+                result = str(eval(self.display.text()))
+                self.display.setText(result)
+            except Exception:
+                self.display.setText("Error")
+        else:
+            self.display.setText(self.display.text() + value)
 
 def main():
    # Setup the app 
-    print("hello world")
+    app = QApplication(sys.argv)
+    calc = Calculator()
+    calc.show()
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
