@@ -23,5 +23,5 @@ A simple calculator built with Python and PyQt5. This app demonstrates the use o
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/python_calculator.git
+git clone https://github.com/ArmandSoto/python_calculator.git
 cd python_calculator
